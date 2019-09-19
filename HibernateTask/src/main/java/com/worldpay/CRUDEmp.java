@@ -28,60 +28,73 @@ public class CRUDEmp {
 			
 			case 1:
 				
-				Criteria cr = session.createCriteria(Laptop.class);
-				List<Laptop> list = cr.list();
-				for(Laptop laptop : list)
+				Criteria cr = session.createCriteria(Emp.class);
+				List<Emp> list = cr.list();
+				for(Emp employee : list)
 				{
+					System.out.println(employee.getEname());
+					System.out.println("Employee No : "+employee.getEno());
+					System.out.println("Employee Name : "+employee.getEname());
+					System.out.println("Employee Salary : "+employee.getSal());
+					System.out.println("Employee Laptop Code : "+employee.getLaptop().getCode());
+					System.out.println("Employee Laptop Brand : "+employee.getLaptop().getBrand());
+					System.out.println("Employee Laptop Price : "+employee.getLaptop().getPrice());
 					
-					System.out.println("Laptop Code : "+laptop.getCode());
-					System.out.println("Laptop Brand : "+laptop.getBrand());
-					System.out.println("Laptop Price : "+laptop.getPrice());
-					System.out.println("Employee No : "+laptop.getEmp().getEno());
-					System.out.println("Employee Name : "+laptop.getEmp().getEname());
-					System.out.println("Employee Salary : "+laptop.getEmp().getSal());
-									
+					List<Project> projects=employee.getProjects();
+					for(Project project:projects){
+						System.out.println(project.getPcode()+","+project.getPtitle()+","+project.getCost());
+					
+					}
+					
+					List<Vehicle> vehicles=employee.getVehicles();
+					for(Vehicle vehicle:vehicles)
+						System.out.println(vehicle.getRegno()+","+vehicle.getBrand()+","+vehicle.getModel()+","+vehicle.getPrice());
+
 				}
 				break;
 				
 			case 2:
-				System.out.println("enter code");
-				String code = scanner.next();
-				System.out.println("enter brand");
-				String brand = scanner.next();
-				System.out.println("enter price");
-				int price = scanner.nextInt();
-
+				System.out.println("enter eno");
+				int eno1 = scanner.nextInt();
+				System.out.println("enter ename");
+				String ename1 = scanner.next();
+				System.out.println("enter esal");
+				int esal1 = scanner.nextInt();
+				System.out.println("enter laptop_code");
+				String lcode1 = scanner.next();
 				Transaction tr = session.beginTransaction();
-				Laptop laptop=new Laptop(code,brand,price);
-				session.save(laptop);
+				Emp employee1 = new Emp(eno1,ename1,esal1,new Laptop(lcode1));
+				session.save(employee1);
 				tr.commit();
 				break;
 				
 			case 3:
-				System.out.println("enter code");
-				String code1 = scanner.next();
-				System.out.println("enter brand");
-				String brand1 = scanner.next();
-				System.out.println("enter price");
-				int price1 = scanner.nextInt();
+				System.out.println("enter eno");
+				int eno2 = scanner.nextInt();
+				System.out.println("enter ename");
+				String ename2 = scanner.next();
+				System.out.println("enter esal");
+				int esal2 = scanner.nextInt();
+				System.out.println("enter laptop_code");
+				String lcode2 = scanner.next();
 				
-				Laptop laptop1=session.get(Laptop.class,code1);
-				laptop1.setCode(code1);
-				laptop1.setBrand(brand1);
-				laptop1.setPrice(price1);
+				Emp e=session.get(Emp.class,eno2);
+				e.setEname(ename2);
+				e.setSal(esal2);
+				e.setLaptop(new Laptop(lcode2));
 				
 				Transaction tr1 = session.beginTransaction();
-				session.update(laptop1);
+				session.update(e);
 				tr1.commit();
 				System.out.println("\nRecord Updated");
 				break;
 				
 			case 4:
-				System.out.println("enter code");
-				String code2 = scanner.next();
-				Laptop laptop2=session.get(Laptop.class,code2);
+				System.out.println("enter eno");
+				int eno3 = scanner.nextInt();
+				Emp e1=session.get(Emp.class,eno3);
 				Transaction tr2 = session.beginTransaction();
-				session.delete(laptop2);
+				session.delete(e1);
 				tr2.commit();
 				System.out.println("\nRecord Deleted");
 				break;

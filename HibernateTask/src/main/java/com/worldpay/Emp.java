@@ -17,7 +17,7 @@ public class Emp {
 	private String ename;
 	private int sal;
 	
-	@OneToOne//(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	private Laptop laptop;
 	
 	@OneToMany(mappedBy = "emp",fetch=FetchType.LAZY)
