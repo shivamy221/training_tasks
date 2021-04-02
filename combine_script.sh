@@ -1,14 +1,18 @@
 #!/bin/bash
 
+# Manual intervention is needed at end of execution of script since a commit
+# message is need after merging which opens test editor and control is lost from script.
+
 project=training_tasks
-repo=Task-12-12-09-19
+repo=Automation-Testing-Assignment
 remoteUrl="git@github.com:shivamy221/$repo.git"
 
-echo $repoUrl
-echo "$(pwd)"
+
+echo "Current directory:$(pwd)"
+
 cd ..
 repoPath="$(pwd)"/$repo
-echo $repoPath
+echo "changed directory to :$repoPath"
 
 #Get clone of repo that is to e added 
 echo "cloning from remote repo URL:$remoteUrl"
