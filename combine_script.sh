@@ -1,7 +1,7 @@
 #!/bin/bash
 
 project=training_tasks
-repo=Task-10-09-09-19
+repo=Task-11-10-09-19
 remoteUrl="git@github.com:shivamy221/$repo.git"
 
 echo $repoUrl
