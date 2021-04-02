@@ -1,7 +1,7 @@
 #!/bin/bash
 
 project=training_tasks
-repo=Task-9-07-09-19
+repo=Task-10-09-09-19
 remoteUrl="git@github.com:shivamy221/$repo.git"
 
 echo $repoUrl
@@ -19,13 +19,13 @@ cd $project
 
 #Merge repo into project
 echo "adding remote to repo $repo from path:$repoPath"
-git remote add $repo/master $repoPath
+git remote add $repo $repoPath
 
 echo "fetching repo:$repo"
 git fetch $repo
 
 echo "merging repo:$repo to project:$project"
-git merge $repo --allow-unrelated-histories
+git merge $repo/master --allow-unrelated-histories
 
 echo "removing remote repo:$repo"
 git remote remove $repo
